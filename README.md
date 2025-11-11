@@ -3,19 +3,19 @@
 ## Executive Summary
 
 **Problem:**  
-Simulate multiple batch jobs in a high-performance computing (HPC) style environment, while providing a simple API to check system health.  
+High-performance computing (HPC) environments often require running multiple batch jobs efficiently, but users need a simple way to monitor system health and job progress without complex infrastructure. This project addresses that gap for developers, students, or researchers who want to simulate HPC-style batch processing on a local machine.
 
 **Solution:**  
-A Python-based batch job scheduler that runs multiple simulated jobs, generates CSV outputs, and exposes a Flask API health endpoint. The project is fully containerized using Docker for reproducibility.
+This project provides a Python-based batch job scheduler that simulates multiple jobs, generates CSV outputs with basic statistics, and exposes a minimal Flask API for checking system health and job configuration. The entire environment is containerized with Docker, allowing anyone to run the simulation reproducibly with a single command, without needing access to an actual HPC cluster.
 
 ---
 
 ## System Overview
 
 **Course Concepts:**  
-- HPC job orchestration using Python multiprocessing  
-- Flask API for health check and job configuration endpoint  
-- Docker containerization  
+- HPC job orchestration using Python multiprocessing: Simulates multiple batch jobs efficiently on a local machine
+- Flask API: Provides a minimal health check endpoint and job configuration endpoint
+- Docker containerization: Ensures reproducible and portable execution of the application
 
 **Architecture Diagram:**  
 ![Architecture](assets/architecture.png)
