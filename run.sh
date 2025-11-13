@@ -1,7 +1,9 @@
 #!/bin/bash
+# Make sure outputs folder exists
+mkdir -p outputs
 
 # Run batch jobs
-python src/job.py
+python src/scheduler.py
 
-# Start API
+# Run API
 python src/api.py
