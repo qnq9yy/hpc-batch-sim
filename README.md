@@ -20,7 +20,7 @@ This project provides a Python-based batch job scheduler that simulates multiple
 
 **Data/Models/Services:**  
 - Job outputs: CSV files with simulated numbers, sum, and mean  
-- Flask API: `/health` endpoint returning job directory status and `/jobs/count` for configuration  
+- Flask API: `/health` endpoint returning job directory status and `/jobs/count` for configuration (**Need to fix this!**) 
 - Docker container ensures reproducible environment  
 
 ---
