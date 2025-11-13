@@ -49,6 +49,28 @@ NUM_JOBS=5
 API_PORT=8080
 ```
 
+### Smoke Test
+Run a minimal test to verify that the Docker container and API are running correctly:
+```bash
+python smoke_test.py
+```
+
+This script will:
+- Generate a temporary Docker container running your batch simulation.
+- Check that the Flask API /health endpoint is reachable.
+- Confirm that the API reports the correct job configuration.
+
+Note:
+- The smoke test does not require any additional input; it uses default environment variables defined in .env.example.
+- It is designed to run on a clean system to ensure reproducibility.
+- If port 8080 is in use, stop the conflicting container:
+  docker ps
+  docker stop <CONTAINER_ID>
+
+Sample Output:
+✅ Smoke test passed: API running and health OK.
+
+
 ### Check the Flask health endpoint:
 ```bash
 curl http://localhost:8080/health
@@ -70,7 +92,7 @@ curl http://localhost:8080/jobs/count
 ```
 
 ### Generated Output Files
-```cvs 
+```csv 
 job_1.csv  job_2.csv  job_3.csv  job_4.csv  job_5.csv
 ```
 
