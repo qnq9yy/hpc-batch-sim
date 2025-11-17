@@ -6,12 +6,12 @@
 High-performance computing (HPC) environments often require running multiple batch jobs efficiently, but users need a simple way to monitor system health and job progress without complex infrastructure. This project addresses that gap for developers, students, or researchers who want to simulate HPC-style batch processing on a local machine.
 
 **Solution:**  
-This project provides a Python-based batch job scheduler that simulates multiple jobs, generates CSV outputs with basic statistics, and exposes a minimal Flask API for checking system health and job configuration (**Need to fix this**). The entire environment is containerized with Docker, allowing anyone to run the simulation reproducibly with a single command, without needing access to an actual HPC cluster.
+This project provides a Python-based batch job scheduler that simulates multiple jobs, generates CSV outputs with basic statistics, and exposes a minimal Flask API for checking system health and job configuration. The entire environment is containerized with Docker, allowing anyone to run the simulation reproducibly with a single command, without needing access to an actual HPC cluster.
 ## System Overview
 
 **Course Concepts:**  
 - HPC job orchestration using Python multiprocessing: Simulates multiple batch jobs efficiently on a local machine
-- Flask API: Provides a minimal health check endpoint and job configuration endpoint (**Need to fix this!**)
+- Flask API: Provides a minimal health check endpoint and job configuration endpoint
 - Docker containerization: Ensures reproducible and portable execution of the application
 
 **Architecture Diagram:**  
@@ -19,7 +19,7 @@ This project provides a Python-based batch job scheduler that simulates multiple
 
 **Data/Models/Services:**  
 - Job outputs: CSV files with simulated numbers, sum, and mean  
-- Flask API: `/health` endpoint returning job directory status and `/jobs/count` for configuration (**Need to fix this!**) 
+- Flask API: `/health` endpoint returning job directory status and `/jobs/count` for configuration
 - Docker container ensures reproducible environment  
 
 ---
@@ -72,7 +72,7 @@ python tests/smoke_test.py
 This script will:
 - Generate a temporary Docker container running your batch simulation
 - Check that the Flask API /health endpoint is reachable
-- Confirm that the API reports the correct job configuration. (** Need to fix**)
+- Confirm that the API reports the correct job configuration.
 
 Note:
 - The smoke test does not require any additional input; it uses default environment variables defined in .env.example.
@@ -101,7 +101,7 @@ curl http://localhost:8080/health
 ```bash
 curl http://localhost:8080/jobs/count
 ```
-** Need to fix this**
+
 
 ### Sample Output
 ```json
