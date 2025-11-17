@@ -114,10 +114,12 @@ numbers,sum,mean
 "[84, 62, 95, 76, 74, 93, 33, 2, 69, 20]",608,60.8
 ```
 
-### Additional Assets
-assets/full_batch_log.txt – full batch run log
-assets/job_1_snippet.txt – snippet showing contents of one CSV file
-assets/architecture.png – architecture diagram
+### Assets Layout
+- assets/full_batch_log.txt : full batch run log
+- assets/job_1_snippet.txt : snippet showing contents of one CSV file
+- assets/health_endpoints.txt : sample output of health endpoint
+- assets/jobs_count_endpoint.txt : sample output of jobs count endpoint
+- all images that end in .png show what the file name states
  
 ### Design Decisions
 - Python multiprocessing: Simulates HPC batch jobs efficiently on a local machine
