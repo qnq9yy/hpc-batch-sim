@@ -47,6 +47,22 @@ What this does:
 docker build -t hpc-batch-sim:latest .
 ```
 
+## One-Commmand Launch
+You can run the HPC batch simulation and start the API in a single command:
+```bash
+docker run --rm -p 8080:8080 \
+    -v $(pwd)/outputs:/app/outputs \
+    -e NUM_JOBS=5 \
+    -e API_PORT=8080 \
+    hpc-batch-sim:latest
+```
+
+What this does:
+- Runs the batch simulation with NUM_JOBS=5 jobs
+- Saves output CSVs to your local outputs/ folder
+- Starts the Flask API accessible at http://localhost:8080
+- Automatically cleans up the container when you stop it (--rm)
+
 **Run the container with 5 jobs and mount outputs folder:**
 
 ```bash
