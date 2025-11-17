@@ -3,10 +3,15 @@
 ## Executive Summary
 
 **Problem:**  
-High-performance computing (HPC) environments often require running multiple batch jobs efficiently, but users need a simple way to monitor system health and job progress without complex infrastructure. This project addresses that gap for developers, students, or researchers who want to simulate HPC-style batch processing on a local machine.
+High-performance computing (HPC) environments often involve running many batch jobs in parallel, but monitoring those jobs and the overall system health can be challenging without specialized tools. In academic settings, this challenge becomes even more pronounced. Students who are new to HPC concepts frequently struggle to understand how batch queues, resource allocation, and job scheduling work—especially when they do not have access to a full HPC cluster. They may rely on shared university systems with limited availability, steep learning curves, or strict usage policies that make experimentation difficult.
+
+Similarly, developers or researchers working on small projects often need a way to test batch-style workflows locally without the overhead of learning complex cluster management tools or setting up full job schedulers. Traditional HPC monitoring tools can be overwhelming or inaccessible for beginners, leaving users without a clear way to observe how their jobs behave or how the system responds under load.
+
+This project addresses these issues by providing a simple, accessible framework for running and tracking multiple batch jobs on a local machine. It allows users to mimic core aspects of HPC batch processing while offering an easy way to observe job status, resource usage, and system performance in real time. By lowering the barrier to entry, the tool helps students gain hands-on experience with HPC concepts, supports developers in prototyping workflows, and enables researchers to experiment without requiring full-scale HPC infrastructure.
 
 **Solution:**  
-This project provides a Python-based batch job scheduler that simulates multiple jobs, generates CSV outputs with basic statistics, and exposes a minimal Flask API for checking system health and job configuration. The entire environment is containerized with Docker, allowing anyone to run the simulation reproducibly with a single command, without needing access to an actual HPC cluster.
+This project provides a simple way to mimic how high-performance computing systems run many jobs at once, but without needing access to a real HPC cluster. It offers a lightweight tool that lets users simulate batches of tasks, view basic summaries of how those tasks performed, and check the system’s status through a small web interface. Everything runs inside a Docker container, so the whole setup can be launched with a single command, making it easy for students, developers, or researchers to experiment with HPC-style workflows on any computer.
+
 ## System Overview
 
 **Course Concepts:**  
