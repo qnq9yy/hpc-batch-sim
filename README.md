@@ -31,13 +31,13 @@ This project provides a simple way to mimic how high-performance computing syste
 
 ## How to Run (Local)
 
-**Build the Docker image:**
+**Build the Docker Image:**
 
 ```bash
 docker build -t hpc-batch-sim:latest .
 ```
 
-**One-Commmand Launch**
+**One-Commmand Launch:**
 
 You can run the HPC batch simulation and start the API in a single command:
 ```bash
@@ -73,11 +73,11 @@ python tests/smoke_test.py
 This script will:
 - Generate a temporary Docker container running your batch simulation
 - Check that the Flask API /health endpoint is reachable
-- Confirm that the API reports the correct job configuration.
+- Confirm that the API reports the correct job configuration
 
 Note:
-- The smoke test does not require any additional input; it uses default environment variables defined in .env.example.
-- It is designed to run on a clean system to ensure reproducibility.
+- The smoke test does not require any additional input; it uses default environment variables defined in .env.example
+- It is designed to run on a clean system to ensure reproducibility
 - If port 8080 is in use, stop the conflicting container:
 ```bash
 docker ps
@@ -102,7 +102,6 @@ curl http://localhost:8080/health
 ```bash
 curl http://localhost:8080/jobs/count
 ```
-
 
 ### Sample Output
 ```json
@@ -129,9 +128,6 @@ numbers,sum,mean
  
 ## Design Decisions
 We wanted a simple way to simulate HPC batch jobs locally without needing a real cluster. Alternatives like Slurm or PBS were too complex and not portable for students or small projects. Python multiprocessing, Flask, and Docker make it easy to run and explore.
-- Python multiprocessing: Simulates HPC batch jobs efficiently on a local machine
-- Flask API: Provides a minimal health check endpoint; easy to extend in future
-- Docker containerization: Ensures reproducible environment and portability
 
 ### Tradeoffs
 - Performance is limited to one machine; not a real cluster
@@ -145,7 +141,7 @@ We wanted a simple way to simulate HPC batch jobs locally without needing a real
 ### Ops
 - Logs printed to console; API shows job counts and system health
 - Scaling is local; multiple containers could mimic clusters
-- Limitations: no real resource management or distributed scheduling
+- Limitations include no real resource management or distributed scheduling
 
 ### What’s Next
 - Extend simulation to multiple containers to mimic a cluster
