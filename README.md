@@ -116,7 +116,7 @@ job_1.csv  job_2.csv  job_3.csv  job_4.csv  job_5.csv
 ### Contents of job_1.csv (first 5 lines)
 ```bash
 numbers,sum,mean
-"[84, 62, 95, 76, 74, 93, 33, 2, 69, 20]",608,60.8
+"[53, 74, 77, 56, 93, 25, 25, 19, 21, 2]",445,44.5
 ```
 
 ### Assets Layout
