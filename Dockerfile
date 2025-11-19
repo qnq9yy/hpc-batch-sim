@@ -6,8 +6,12 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/ ./src
+COPY frontend/ ./frontend
 COPY run.sh ./
+
 RUN chmod +x run.sh
 
 EXPOSE 8080
-CMD ["bash", "run.sh"]
+
+CMD ["./run.sh"]
+

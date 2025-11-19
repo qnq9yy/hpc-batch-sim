@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HPC Batch Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    table { border-collapse: collapse; margin-top: 10px; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 5px 10px; text-align: center; }
+    canvas { margin-top: 20px; border: 1px solid #ccc; display: block; }
+    h1, h2 { margin-bottom: 10px; }
+    #csvContent { background: #f9f9f9; padding: 10px; border: 1px solid #ccc; max-height: 200px; overflow-y: auto; }
+    select, button { margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <h1>HPC Batch Simulation Dashboard</h1>
+
+  <div>
+    <strong>System Health:</strong> <span id="health">Loading...</span>
+    <button id="rerun">Re-run Jobs</button>
+  </div>
+  <div>
+    <strong>Number of Jobs:</strong> <span id="jobs">Loading...</span>
+  </div>
+
+  <div>
+    <label for="csvSelect">Inspect CSV:</label>
+    <select id="csvSelect"></select>
+    <pre id="csvContent"></pre>
+  </div>
+
+  <h2>Job Results</h2>
+  <table id="resultsTable">
+    <thead>
+      <tr>
+        <th>Job</th>
+        <th>Numbers</th>
+        <th>Sum</th>
+        <th>Mean</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Mean Values Over Jobs</h2>
+  <canvas id="meanChart" width="800" height="400"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>

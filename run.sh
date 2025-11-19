@@ -1,9 +1,10 @@
 #!/bin/bash
-# Make sure outputs folder exists
+
+# Create outputs directory inside the container
 mkdir -p outputs
 
-# Run batch jobs
+echo "Running scheduler once to generate CSV files..."
 python src/scheduler.py
 
-# Run API
+echo "Starting API..."
 python src/api.py
