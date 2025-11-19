@@ -37,7 +37,7 @@ This project provides a simple way to mimic how high-performance computing syste
 docker build -t hpc-batch-sim:latest .
 ```
 
-## One-Commmand Launch
+**One-Commmand Launch**
 You can run the HPC batch simulation and start the API in a single command:
 ```bash
 docker run --rm -p 8080:8080 \
@@ -119,14 +119,14 @@ numbers,sum,mean
 "[53, 74, 77, 56, 93, 25, 25, 19, 21, 2]",445,44.5
 ```
 
-### Assets Layout
+## Assets Layout
 - assets/full_batch_log.txt : full batch run log
 - assets/job_1_snippet.txt : snippet showing contents of one CSV file
 - assets/health_endpoints.txt : sample output of health endpoint
 - assets/jobs_count_endpoint.txt : sample output of jobs count endpoint
 - all images that end in .png show what the file name states
  
-### Design Decisions
+## Design Decisions
 We wanted a simple way to simulate HPC batch jobs locally without needing a real cluster. Alternatives like Slurm or PBS were too complex and not portable for students or small projects. Python multiprocessing, Flask, and Docker make it easy to run and explore.
 - Python multiprocessing: Simulates HPC batch jobs efficiently on a local machine
 - Flask API: Provides a minimal health check endpoint; easy to extend in future
