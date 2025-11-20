@@ -69,7 +69,9 @@ API_PORT=8080
 
 A `.env.example` file is included in the repository.  
 Before running the container, copy it into a `.env` file:
+
 cp .env.example .env
+
 Note: The Docker container will automatically load environment variables from the .env file at runtime.
 
 ### Smoke Test
