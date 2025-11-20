@@ -113,7 +113,7 @@ curl http://localhost:8080/jobs/count
 job_1.csv  job_2.csv  job_3.csv  job_4.csv  job_5.csv
 ```
 
-### Contents of job_1.csv
+### Sample Contents of job_1.csv
 ```bash
 numbers,sum,mean
 "[53, 74, 77, 56, 93, 25, 25, 19, 21, 2]",445,44.5
