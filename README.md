@@ -155,7 +155,7 @@ We wanted a simple way to simulate HPC batch jobs locally without needing a real
 
 ### License
 
-This project is licensed under the MIT License.  
+This project is licensed under the MIT license.  
 Click MIT License for additional details.
 
 
