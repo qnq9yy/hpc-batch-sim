@@ -67,6 +67,10 @@ NUM_JOBS=5
 API_PORT=8080
 ```
 
+A `.env.example` file is included in the repository.  
+Before running the container, copy it into a `.env` file:
+cp .env.example .env
+
 ### Smoke Test
 Run a minimal test to verify that the Docker container and API are running correctly:
 ```bash
