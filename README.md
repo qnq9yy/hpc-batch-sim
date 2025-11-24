@@ -65,6 +65,7 @@ Use a .env file to configure runtime options (see .env.example):
 ```bash
 NUM_JOBS=5
 API_PORT=8080
+OUTPUT_DIR=/app/outputs
 ```
 
 A `.env.example` file is included in the repository.  
