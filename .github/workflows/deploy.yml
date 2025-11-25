@@ -1,0 +1,30 @@
+name: Deploy Container to Azure Web App
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: hpc-batch-sim  # your Web App name
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Build Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t hpc-batch-sim:latest .
+
+      # Log in to Azure Web App and deploy
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: hpc-batch-sim:latest
