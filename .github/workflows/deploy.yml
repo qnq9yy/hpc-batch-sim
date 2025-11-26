@@ -1,41 +1,63 @@
-name: Build & Deploy Report
+name: CI & Report Deployment
+
 on:
   push:
-    branches:
-      - main # Or whatever your main branch is called
-  # Allows you to run this workflow manually from the Actions tab
+    branches: [ main ]
   workflow_dispatch:
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write # Required for deployment
-      id-token: write # Required for deployment
+# Permissions are critical for Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
+jobs:
+  # Job 1: Build the Docker image, run simulation (Observability), and create artifact
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Run your simulation and generate the report here
-      - name: Run Simulation and Generate Report
-        run: |
-          # Example: run a script that executes the simulation
-          # and outputs a file named 'report.html' into the 'build' directory.
-          mkdir build
-          echo "<h1>HPC Simulation Report</h1><p>Run time: $(date)</p>" > build/index.html
-          echo "See the Observability section for metrics." >> build/index.html
-          # Replace the above echo commands with your actual simulation/reporting logic
+      # 1. Build the Docker Image (Your reproducible environment)
+      - name: Build Docker Image
+        # This command must succeed before running. It uses your Dockerfile.
+        run: docker build -t hpc-sim:latest .
 
+      # 2. Run Simulation & Capture Metrics (CI/Observability)
+      - name: Run Simulation and Generate Metrics/Report
+        run: |
+          # Run the container. The output (Wall Time) is captured in the logs!
+          docker run --rm hpc-sim:latest
+
+          # --- REPORT GENERATION (Cloud Deployment) ---
+          # This creates the content for your stable URL
+          mkdir _site
+          echo "<h1>HPC Simulation Report</h1>" > _site/index.html
+          echo "<p>Last Run Status: Success (Check CI logs for Wall Time)</p>" >> _site/index.html
+          echo "<p>Run Date: $(date)</p>" >> _site/index.html
+          # You can enhance this report to read your Wall Time from run.sh output
+          # Example: echo "Wall Time: $(grep 'Wall Time' metrics.log)" >> _site/index.html
+
+      # 3. Prepare Deployment Artifact
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      - name: Upload Report Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'build' # The directory containing your index.html/report
+          # This must match the folder where you created index.html
+          path: '_site'
 
+  # Job 2: Deploy the Artifact to GitHub Pages
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    # This job only runs after the 'build' job completes successfully
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
