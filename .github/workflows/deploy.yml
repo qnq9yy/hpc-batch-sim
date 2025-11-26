@@ -28,7 +28,7 @@ jobs:
       - name: Run Simulation and Generate Metrics/Report
         run: |
           # Run the container. The output (Wall Time) is captured in the logs!
-          docker run --rm hpc-sim:latest
+          docker run --rm -e CI_TEST=true hpc-sim:latest
 
           # --- REPORT GENERATION (Cloud Deployment) ---
           # This creates the content for your stable URL
