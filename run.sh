@@ -1,28 +1,31 @@
 #!/bin/bash
 
 # --- 1. Start Wall Time Measurement (Observability) ---
-# Record the current time with high precision
 START_TIME=$(date +%s.%N)
 
 # Create outputs directory inside the container
 mkdir -p outputs
 
 echo "Running scheduler once to generate CSV files..."
-# Run the core simulation/data generation component
 python src/scheduler.py
 
-# --- 2. End Wall Time Measurement ---
-# Record the time immediately after the critical component finishes
+# --- 2. End Wall Time Measurement & Report ---
 END_TIME=$(date +%s.%N)
-# Calculate the difference (bc is used for floating point math in Bash)
 WALL_TIME=$(echo "$END_TIME - $START_TIME" | bc)
-
-# Report the metric
 echo "--- OBSERVABILITY METRICS ---"
 echo "Total Scheduler Wall Time: $WALL_TIME seconds"
 echo "---"
 
-# --- 3. Start API (If successful) ---
-echo "Starting API..."
-# Note: This command will keep the container running indefinitely
+# Save metrics to a file for the report generation step
+echo "Wall Time: $WALL_TIME seconds" > outputs/metrics.log
+echo "Status: SUCCESS" >> outputs/metrics.log
+
+# Check if the CI_TEST variable is set. If so, exit here.
+if [ "$CI_TEST" = "true" ]; then
+    echo "CI_TEST mode detected. Exiting script after simulation run."
+    exit 0
+fi
+
+# --- 3. Start API (Only runs when CI_TEST is NOT set) ---
+echo "Starting API for local/cloud use..."
 python src/api.py
