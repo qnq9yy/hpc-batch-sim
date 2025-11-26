@@ -1,0 +1,41 @@
+name: Build & Deploy Report
+on:
+  push:
+    branches:
+      - main # Or whatever your main branch is called
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write # Required for deployment
+      id-token: write # Required for deployment
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Run your simulation and generate the report here
+      - name: Run Simulation and Generate Report
+        run: |
+          # Example: run a script that executes the simulation
+          # and outputs a file named 'report.html' into the 'build' directory.
+          mkdir build
+          echo "<h1>HPC Simulation Report</h1><p>Run time: $(date)</p>" > build/index.html
+          echo "See the Observability section for metrics." >> build/index.html
+          # Replace the above echo commands with your actual simulation/reporting logic
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'build' # The directory containing your index.html/report
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
