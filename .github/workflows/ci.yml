@@ -18,3 +18,22 @@ jobs:
       - name: Run Simulation and Capture Metrics (Observability)
         # Run the container. The output will show your Wall Time metric!
         run: docker run --rm hpc-sim:latest
+
+      # Add these steps to the SAME 'ci.yml' file, after the 'Run Simulation...' step
+
+      - name: Generate Simple Report (for Stable URL)
+        run: |
+          # Create a basic index page with the deployment information
+          echo "# HPC Simulation Status" > _site/index.md
+          echo "" >> _site/index.md
+          echo "## Last Successful Run" >> _site/index.md
+          echo "- **Date:** $(date)" >> _site/index.md
+          echo "- **Commit:** ${{ github.sha }}" >> _site/index.md
+          echo "- **Full Metrics:** See the GitHub Actions log for Wall Time." >> _site/index.md
+    
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          # Creates a special branch named gh-pages for the website
