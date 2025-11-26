@@ -1,0 +1,20 @@
+name: CI Build and Test
+
+on:
+  push:
+    branches: [ main ] # Runs on every push to your main branch
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        # Use the same command you ran locally
+        run: docker build -t hpc-sim:latest .
+
+      - name: Run Simulation and Capture Metrics (Observability)
+        # Run the container. The output will show your Wall Time metric!
+        run: docker run --rm hpc-sim:latest
